@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <>
       {navbarVisible && (
-        <div className="sm:hidden fixed top-0 left-0 w-full h-[100vh] bg-white dark:bg-black">
+        <div className="sm:hidden sticky z-10 top-0 left-0 w-full h-[100vh] bg-white dark:bg-black">
           <div className="w-full h-20 px-5 flex justify-end items-center">
             <button onClick={() => setNavbarVisible(false)}>
               <CloseImg className="w-6 h-6 dark:stroke-white stroke-special-black" />
