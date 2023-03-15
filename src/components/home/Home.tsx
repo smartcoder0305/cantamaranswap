@@ -146,7 +146,11 @@ const Home = () => {
           <div className="mt-10 flex justify-between gap-[30px]">
             <div className="flex-1 flex flex-col items-center bg-white dark:bg-[rgba(11,11,15,0.9)] border-[1px] border-[rgba(255,255,255,0.1)] rounded-[18px] px-[18px] py-10">
               <div className="flex gap-3">
-                <img src={BtcImg} alt="" className="w-[52px] h-[52px]" />
+                <img
+                  src={BtcImg}
+                  alt=""
+                  className="w-[52px] h-[52px] rotate-[15deg]"
+                />
                 <img src={SwapImg} alt="" className="w-6" />
                 <img src={StxImg} alt="" className="w-[52px] h-[52px]" />
               </div>
@@ -162,7 +166,11 @@ const Home = () => {
             </div>
             <div className="flex-1 flex flex-col items-center bg-white dark:bg-[rgba(11,11,15,0.9)] border-[1px] border-[rgba(255,255,255,0.1)] rounded-[18px] px-[18px] py-10">
               <div className="flex gap-3">
-                <img src={BtcImg} alt="" className="w-[52px] h-[52px]" />
+                <img
+                  src={BtcImg}
+                  alt=""
+                  className="w-[52px] h-[52px] rotate-[15deg]"
+                />
                 <img src={SwapImg} alt="" className="w-6" />
                 <img src={StxImg} alt="" className="w-[52px] h-[52px]" />
               </div>
@@ -178,7 +186,11 @@ const Home = () => {
             </div>
             <div className="flex-1 flex flex-col items-center bg-white dark:bg-[rgba(11,11,15,0.9)] border-[1px] border-[rgba(255,255,255,0.1)] rounded-[18px] px-[18px] py-10">
               <div className="flex gap-3">
-                <img src={BtcImg} alt="" className="w-[52px] h-[52px]" />
+                <img
+                  src={BtcImg}
+                  alt=""
+                  className="w-[52px] h-[52px] rotate-[15deg]"
+                />
                 <img src={SwapImg} alt="" className="w-6" />
                 <img src={StxImg} alt="" className="w-[52px] h-[52px]" />
               </div>
