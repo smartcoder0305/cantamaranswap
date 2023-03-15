@@ -25,7 +25,7 @@ const ThemeSelector = () => {
 
   return (
     <div
-      className="w-12 h-12 flex items-center justify-center rounded-full hover:bg-[rgba(7,7,10,0.1)] dark:hover:bg-[rgba(255,255,255,0.1)]"
+      className="w-12 h-12 flex flex-none items-center justify-center rounded-full hover:bg-[rgba(7,7,10,0.1)] dark:hover:bg-[rgba(255,255,255,0.1)]"
       onClick={onChangeThemeBtnClicked}
     >
       {theme === "dark" ? (

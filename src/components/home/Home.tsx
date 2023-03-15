@@ -10,9 +10,9 @@ import { ReactComponent as ChervonDownImg } from "../../assets/img/chervon-down.
 const Home = () => {
   return (
     <div className="w-full flex justify-center">
-      <div className="w-full max-w-[1440px] px-20">
-        <div className="w-full flex flex-col items-center mt-[120px] mb-[64px] text-center">
-          <h1 className="font-semibold text-[44px] leading-[60px] tracking-[1px]">
+      <div className="w-full max-w-[1440px] px-6 sm:px-20">
+        <div className="w-full flex flex-col items-center mt-[120px] sm:mb-[64px] text-center">
+          <h1 className="font-semibold text-[36px] sm:text-[44px] leading-[40px] sm:leading-[60px] tracking-[1px]">
             Trustless exchange of digital assets
           </h1>
           <p className="max-w-[738px] mt-5 font-medium text-sm leading-7 text-center">
@@ -30,7 +30,7 @@ const Home = () => {
             <p className="font-medium text-xl leading-6 mt-[24px]">
               Swap your digital assets..
             </p>
-            <div className="w-full flex justify-around mb-[26px]">
+            <div className="w-full flex flex-col gap-3 items-center sm:items-start sm:flex-row sm:justify-around mb-[26px]">
               <div className="flex gap-2.5 items-center">
                 <img className="h-10 w-10" src={StxImg} alt="" />
                 <p className="font-medium text-[36px] leading-[43px]">STX</p>
@@ -46,14 +46,14 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="w-full flex justify-between items-center py-[120px]">
-          <div className="w-[610px] flex flex-col">
-            <h1 className="font-medium text-[28px] leading-[33px] mb-[56px]">
+        <div className="w-full flex flex-col sm:flex-row sm:justify-between items-center py-[120px]">
+          <div className="max-w-[610px] w-full flex flex-col">
+            <h1 className="font-medium text-xl sm:text-[28px] leading-[33px] mb-[56px]">
               Looking to swap cryptocurrency on STX?
               <br /> Here's how.
             </h1>
             <div className="flex gap-6 h-10 items-center">
-              <div className="w-10 h-10 flex justify-center items-center border-[1px] rounded-full border-[rgba(0,0,0,0.1)] dark:border-[rgba(255,255,255,0.1)]">
+              <div className="w-10 h-10 flex flex-none justify-center items-center border-[1px] rounded-full border-[rgba(0,0,0,0.1)] dark:border-[rgba(255,255,255,0.1)]">
                 <div className="w-1.5 h-1.5 bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)] rounded-full" />
               </div>
               <p className="text-sm font-normal leading-7">
@@ -71,7 +71,7 @@ const Home = () => {
               </p>
             </div>
             <div className="w-[1px] h-[56px] ml-5 bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)]" />
-            <div className="flex gap-6 h-10 pb-8">
+            <div className="flex gap-6 h-10 sm:pb-0 pb-8">
               <div className="flex-none w-10 h-10 flex justify-center items-center border-[1px] rounded-full bg-white dark:bg-[#191A20] border-[rgba(0,0,0,0.1)] dark:border-[rgba(255,255,255,0.1)]">
                 <div className="w-1.5 h-1.5 bg-special-black dark:bg-white rounded-full" />
               </div>
@@ -81,8 +81,8 @@ const Home = () => {
               </p>
             </div>
           </div>
-          <div className="w-[520px] flex flex-col gap-5">
-            <div className="w-full flex rounded-[18px] bg-white dark:bg-[rgba(11,11,15,0.9)] p-2 gap-2.5">
+          <div className="max-w-[520px] w-full mt-24 flex flex-col gap-5">
+            <div className="w-full flex rounded-[18px] bg-white dark:bg-[rgba(11,11,15,0.9)] p-2 gap-2.5 text-center">
               <p className="flex-1 flex items-center justify-center py-2 bg-[rgba(7,7,10,0.07)] dark:bg-[#14151A] rounded-2xl text-base font-normal">
                 Catamaran Swap
               </p>
@@ -143,7 +143,7 @@ const Home = () => {
               You can use Catamaran swaps in three ways.
             </p>
           </>
-          <div className="mt-10 flex justify-between gap-[30px]">
+          <div className="mt-10 flex flex-col sm:flex-row sm:justify-between gap-[30px]">
             <div className="flex-1 flex flex-col items-center bg-white dark:bg-[rgba(11,11,15,0.9)] border-[1px] border-[rgba(255,255,255,0.1)] rounded-[18px] px-[18px] py-10">
               <div className="flex gap-3">
                 <img
@@ -215,31 +215,31 @@ const Home = () => {
               <p className="text-base leading-6 font-medium">
                 What can go wrong with catamaran swaps (BTC - STX)?
               </p>
-              <ChervonDownImg className="dark:fill-white fill-special-black" />
+              <ChervonDownImg className="dark:fill-white fill-special-black flex-none" />
             </div>
             <div className="flex px-6 py-4 items-center justify-between bg-white dark:bg-[rgba(11,11,15,0.9)] rounded-[18px]">
               <p className="text-base leading-6 font-medium">
                 What can go wrong with atomic swaps?
               </p>
-              <ChervonDownImg className="dark:fill-white fill-special-black" />
+              <ChervonDownImg className="dark:fill-white fill-special-black flex-none" />
             </div>
             <div className="flex px-6 py-4 items-center justify-between bg-white dark:bg-[rgba(11,11,15,0.9)] rounded-[18px]">
               <p className="text-base leading-6 font-medium">
                 Where can I get FRIE tokens to pay fees?
               </p>
-              <ChervonDownImg className="dark:fill-white fill-special-black" />
+              <ChervonDownImg className="dark:fill-white fill-special-black flex-none" />
             </div>
             <div className="flex px-6 py-4 items-center justify-between bg-white dark:bg-[rgba(11,11,15,0.9)] rounded-[18px]">
               <p className="text-base leading-6 font-medium">
                 Where can I find more details about the used smart contracts?
               </p>
-              <ChervonDownImg className="dark:fill-white fill-special-black" />
+              <ChervonDownImg className="dark:fill-white fill-special-black flex-none" />
             </div>
             <div className="flex px-6 py-4 items-center justify-between bg-white dark:bg-[rgba(11,11,15,0.9)] rounded-[18px]">
               <p className="text-base leading-6 font-medium">
                 What was the first swap?
               </p>
-              <ChervonDownImg className="dark:fill-white fill-special-black" />
+              <ChervonDownImg className="dark:fill-white fill-special-black flex-none" />
             </div>
           </div>
         </div>
