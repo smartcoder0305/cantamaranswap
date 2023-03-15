@@ -69,7 +69,7 @@ const Home = () => {
               </p>
             </div>
             <div className="w-[1px] h-[56px] ml-5 bg-[rgba(0,0,0,0.1)] dark:bg-[rgba(255,255,255,0.1)]" />
-            <div className="flex gap-6 h-10">
+            <div className="flex gap-6 h-10 pb-8">
               <div className="flex-none w-10 h-10 flex justify-center items-center border-[1px] rounded-full bg-white dark:bg-[#191A20] border-[rgba(0,0,0,0.1)] dark:border-[rgba(255,255,255,0.1)]">
                 <div className="w-1.5 h-1.5 bg-special-black dark:bg-white rounded-full" />
               </div>
@@ -80,8 +80,8 @@ const Home = () => {
             </div>
           </div>
           <div className="w-[520px] flex flex-col gap-5">
-            <div className="w-full flex rounded-[18px] bg-[rgba(11,11,15,0.9)] p-2 gap-2.5">
-              <p className="flex-1 flex items-center justify-center py-2 bg-[#14151A] rounded-2xl text-base font-normal">
+            <div className="w-full flex rounded-[18px] bg-white dark:bg-[rgba(11,11,15,0.9)] p-2 gap-2.5">
+              <p className="flex-1 flex items-center justify-center py-2 bg-[rgba(7,7,10,0.07)] dark:bg-[#14151A] rounded-2xl text-base font-normal">
                 Catamaran Swap
               </p>
               <p className="flex-1 flex items-center justify-center py-2 rounded-2xl text-base font-normal">
@@ -91,8 +91,8 @@ const Home = () => {
                 NFT Swap
               </p>
             </div>
-            <div className="w-full p-5 flex flex-col gap-3 bg-[rgba(11,11,15,0.9)] rounded-[18px]">
-              <div className="p-5 flex justify-between items-center rounded-lg bg-[#14151A]">
+            <div className="w-full p-5 flex flex-col gap-3 bg-white dark:bg-[rgba(11,11,15,0.9)] rounded-[18px]">
+              <div className="p-5 flex justify-between items-center rounded-lg bg-[rgba(7,7,10,0.03)] dark:bg-[#14151A]">
                 <div>
                   <p className="text-xs font-light leading-[14px] opacity-50">
                     You send
@@ -107,7 +107,7 @@ const Home = () => {
                   <p className="text-xl font-medium leading-6">STX</p>
                 </div>
               </div>
-              <div className="p-5 flex justify-between items-center rounded-lg bg-[#14151A]">
+              <div className="p-5 flex justify-between items-center rounded-lg bg-[rgba(7,7,10,0.03)] bg-[#14151A]">
                 <div>
                   <p className="text-xs font-light leading-[14px] opacity-50">
                     You receive
