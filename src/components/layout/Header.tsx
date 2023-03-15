@@ -8,7 +8,7 @@ import { ReactComponent as ChervonDownImg } from "../../assets/img/chervon-down.
 
 const Header = () => {
   return (
-    <div className="w-full h-20 flex justify-center text-special-black dark:text-white">
+    <div className="w-full h-20 flex justify-center">
       <div className="max-w-[1440px] w-full px-20 flex justify-between items-center">
         <div className="w-3/12 flex items-center">
           <div className="w-[72px] h-[72px] flex justify-center items-center">
