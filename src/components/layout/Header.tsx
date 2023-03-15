@@ -1,22 +1,37 @@
 import React from "react";
 import ConnectWallet from "../common/ConnectWallet";
+import ThemeSelector from "../common/ThemeSelector";
+import { Link } from "react-router-dom";
 
-import LogoImg from "../../assets/img/logo-light.svg";
-import SunImg from "../../assets/img/sun.svg";
+import { ReactComponent as LogoImg } from "../../assets/img/logo.svg";
+import { ReactComponent as ChervonDownImg } from "../../assets/img/chervon-down.svg";
 
 const Header = () => {
   return (
-    <div className="w-full h-20 flex justify-center">
+    <div className="w-full h-20 flex justify-center text-special-black dark:text-white">
       <div className="max-w-[1440px] w-full px-20 flex justify-between items-center">
         <div className="w-3/12 flex items-center">
           <div className="w-[72px] h-[72px] flex justify-center items-center">
-            <img src={LogoImg} alt="" className="w-9 h-6" />
+            <LogoImg className="w-9 h-6 dark:fill-white fill-special-black" />
           </div>
         </div>
+        <div className="flex justify-center gap-12">
+          <Link to="/swaps" className="text-base font-normal leading-6">
+            Swaps
+          </Link>
+          <Link to="/documentation" className="text-base font-normal leading-6">
+            Documentation
+          </Link>
+          <Link
+            to="/swaps"
+            className="text-base font-normal leading-6 flex gap-3 items-center"
+          >
+            More{" "}
+            <ChervonDownImg className="dark:fill-white fill-special-black" />
+          </Link>
+        </div>
         <div className="w-3/12 flex justify-end gap-3">
-          <div className="w-12 h-12 flex items-center justify-center rounded-full hover:bg-[rgba(255,255,255,0.1);]">
-            <img src={SunImg} alt="" />
-          </div>
+          <ThemeSelector />
           <ConnectWallet />
         </div>
       </div>

@@ -6,6 +6,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      colors: {
+        "special-black": "#07070A",
+      },
       backgroundImage: {
         "dark-image": "url('./assets/img/background.png')",
       },

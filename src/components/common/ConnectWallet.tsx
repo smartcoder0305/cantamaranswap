@@ -38,7 +38,7 @@ const ConnectWallet = () => {
 
   return (
     <button
-      className="bg-[rgba(255,255,255,0.1)] px-6 py-3 rounded-full text-white text-base font-light leading-6"
+      className="bg-[rgba(255,255,255,0.1)] px-6 py-3 rounded-full text-base font-light leading-6 border-special-black border-[1px] dark:border-none"
       type="button"
       onClick={authenticate}
     >
