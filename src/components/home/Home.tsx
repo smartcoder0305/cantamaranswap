@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import StxImg from "../../assets/img/stx.png";
 import BtcImg from "../../assets/img/btc.png";
 import MiaImg from "../../assets/img/mia.png";
+import SwapImg from "../../assets/img/swap.svg";
 
 const Home = () => {
   return (
@@ -129,6 +130,66 @@ const Home = () => {
                 1 BTC = 0.0004354 STX
                 <span className="opacity-50"> ($1.00043)</span>
               </p>
+            </div>
+          </div>
+        </div>
+        <div className="w-full flex flex-col items-center mt-[120px]">
+          <>
+            <h1 className="text-[28px] leading-[33px] font-medium text-center">
+              Swap your digital assets
+            </h1>
+            <p className="mt-4 text-sm leading-7 text-center font-light">
+              You can use Catamaran swaps in three ways.
+            </p>
+          </>
+          <div className="mt-10 flex justify-between gap-[30px]">
+            <div className="flex-1 flex flex-col items-center border-[1px] border-[rgba(255,255,255,0.1)] rounded-[18px] px-[18px] py-10">
+              <div className="flex gap-3">
+                <img src={BtcImg} alt="" className="w-[52px] h-[52px]" />
+                <img src={SwapImg} alt="" className="w-6" />
+                <img src={StxImg} alt="" className="w-[52px] h-[52px]" />
+              </div>
+              <p className="text-base leading-6 text-center mt-[18px]">
+                Swap between BTC and STC chain using catamaran swaps
+              </p>
+              <Link
+                to="swap"
+                className="mt-5 rounded-full px-6 py-3 dark:bg-white bg-special-black text-base font-medium leading-5 text-white dark:text-special-black"
+              >
+                Swap now
+              </Link>
+            </div>
+            <div className="flex-1 flex flex-col items-center border-[1px] border-[rgba(255,255,255,0.1)] rounded-[18px] px-[18px] py-10">
+              <div className="flex gap-3">
+                <img src={BtcImg} alt="" className="w-[52px] h-[52px]" />
+                <img src={SwapImg} alt="" className="w-6" />
+                <img src={StxImg} alt="" className="w-[52px] h-[52px]" />
+              </div>
+              <p className="text-base leading-6 text-center mt-[18px]">
+                Swap between BTC and STC chain using catamaran swaps
+              </p>
+              <Link
+                to="swap"
+                className="mt-5 rounded-full px-6 py-3 dark:bg-white bg-special-black text-base font-medium leading-5 text-white dark:text-special-black"
+              >
+                Swap now
+              </Link>
+            </div>
+            <div className="flex-1 flex flex-col items-center border-[1px] border-[rgba(255,255,255,0.1)] rounded-[18px] px-[18px] py-10">
+              <div className="flex gap-3">
+                <img src={BtcImg} alt="" className="w-[52px] h-[52px]" />
+                <img src={SwapImg} alt="" className="w-6" />
+                <img src={StxImg} alt="" className="w-[52px] h-[52px]" />
+              </div>
+              <p className="text-base leading-6 text-center mt-[18px]">
+                Swap between BTC and STC chain using catamaran swaps
+              </p>
+              <Link
+                to="swap"
+                className="mt-5 rounded-full px-6 py-3 dark:bg-white bg-special-black text-base font-medium leading-5 text-white dark:text-special-black"
+              >
+                Swap now
+              </Link>
             </div>
           </div>
         </div>
