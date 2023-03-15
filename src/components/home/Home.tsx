@@ -109,7 +109,7 @@ const Home = () => {
                   <p className="text-xl font-medium leading-6">STX</p>
                 </div>
               </div>
-              <div className="p-5 flex justify-between items-center rounded-lg bg-[rgba(7,7,10,0.03)] bg-[#14151A]">
+              <div className="p-5 flex justify-between items-center rounded-lg bg-[rgba(7,7,10,0.03)] dark:bg-[#14151A]">
                 <div>
                   <p className="text-xs font-light leading-[14px] opacity-50">
                     You receive
