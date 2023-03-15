@@ -11,9 +11,12 @@ const Header = () => {
     <div className="w-full h-20 flex justify-center">
       <div className="max-w-[1440px] w-full px-20 flex justify-between items-center">
         <div className="w-3/12 flex items-center">
-          <div className="w-[72px] h-[72px] flex justify-center items-center">
+          <Link
+            className="w-[72px] h-[72px] flex justify-center items-center"
+            to="/"
+          >
             <LogoImg className="w-9 h-6 dark:fill-white fill-special-black" />
-          </div>
+          </Link>
         </div>
         <div className="flex justify-center gap-12">
           <Link to="/swaps" className="text-base font-normal leading-6">
