@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import AssetsItem from "./AssetsItem";
+
 import StxImg from "../../../assets/img/stx.png";
 import BtcImg from "../../../assets/img/btc.png";
 import MiaImg from "../../../assets/img/mia.png";
-import AssetsItem from "./AssetsItem";
 
 const LandingView = () => {
   return (

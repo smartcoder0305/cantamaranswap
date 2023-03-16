@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 import ConnectWallet from "../../common/ConnectWallet";
 import ThemeSelector from "../../common/ThemeSelector";
-import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
 
 import { ReactComponent as LogoImg } from "../../../assets/img/logo.svg";
 import { ReactComponent as ChervonDownImg } from "../../../assets/img/chervon-down.svg";
 import { ReactComponent as NavbarImg } from "../../../assets/img/navbar.svg";
-import Navbar from "./Navbar";
 
 const Header = () => {
   const [navbarVisible, setNavbarVisible] = useState(false);

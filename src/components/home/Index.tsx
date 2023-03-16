@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 import Faq from "./faq/Index";
 import LandingView from "./landing-view";
-
 import SwapFlow from "./swap-flow/Index";
 import SwapType from "./swap-type/Index";
 
