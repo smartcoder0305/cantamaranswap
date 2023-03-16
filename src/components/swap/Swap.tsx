@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CanatamaranSwap from "./cantamaran-swap/CantamaranSwap";
 import SwapButton from "./SwapButton";
 
 export const enum SwapItems {
@@ -15,7 +16,7 @@ const Swap = () => {
   return (
     <div className="w-full flex justify-center">
       <div className="w-full max-w-[1440px] flex justify-center">
-        <div className="max-w-[520px] w-full mt-24 flex flex-col gap-5">
+        <div className="max-w-[590px] w-full mt-24 flex flex-col gap-5">
           <div className="w-full flex rounded-[18px] bg-white dark:bg-[rgba(11,11,15,0.9)] p-2 gap-2.5 text-center">
             <SwapButton
               name={SwapItems.CANTAMARAN_SWAP}
@@ -33,6 +34,14 @@ const Swap = () => {
               selectedHeaderItem={selectedHeaderItem}
             />
           </div>
+          {(() => {
+            switch (selectedHeaderItem) {
+              case SwapItems.CANTAMARAN_SWAP:
+                return <CanatamaranSwap />;
+              default:
+                break;
+            }
+          })()}
         </div>
       </div>
     </div>
