@@ -14,8 +14,6 @@ const Navbar = ({
   navbarVisible: boolean;
   setNavbarVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  console.log(navbarVisible);
-
   return (
     <div
       className={`sm:hidden overflow-hidden fixed z-10 top-0 right-0 ${
