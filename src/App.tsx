@@ -5,6 +5,7 @@ import Home from "./components/home/Home";
 import Header from "./components/layout/header/Header";
 
 import "./App.css";
+import Swap from "./components/swap/Swap";
 
 function App() {
   // set theme as system setting
@@ -28,6 +29,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/swaps" element={<Swap />} />
         </Routes>
       </div>
     </Router>
