@@ -43,7 +43,7 @@ const Navbar = ({
           Documentation
         </Link>
         <Link
-          to="/swaps"
+          to="/more"
           className="text-base font-normal leading-6 flex gap-3 items-center"
           onClick={closeNavbar}
         >
