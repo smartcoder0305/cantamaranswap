@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import Header from "./components/layout/Header";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./components/home/Home";
 
 import "./App.css";
-import Home from "./components/home/Home";
 
 function App() {
   // set theme as system setting
@@ -23,7 +23,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App backdrop-blur-[96px] min-h-[100vh] text-special-black dark:text-white transition-all duration-500">
+      <div className="App backdrop-blur-[96px] min-h-[100vh] text-special-black dark:text-white transition-all duration-500 overflow-hidden relative">
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />

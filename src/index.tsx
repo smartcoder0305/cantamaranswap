@@ -12,7 +12,7 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <div className="bg-blend-difference dark:bg-blend-normal bg-opacity-90 dark:bg-opacity-100 bg-[#EDEDED] dark:bg-[#14151A] bg-dark-image bg-no-repeat dark:bg-[length:130%_100vh] min-h-[100vh]">
+      <div className="w-full bg-blend-difference dark:bg-blend-normal bg-opacity-90 dark:bg-opacity-100 bg-[#EDEDED] dark:bg-[#14151A] bg-dark-image bg-no-repeat dark:bg-[length:130%_100vh] min-h-[100vh]">
         <App />
       </div>
     </Provider>
