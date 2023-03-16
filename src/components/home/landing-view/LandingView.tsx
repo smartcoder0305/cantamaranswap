@@ -19,7 +19,7 @@ const LandingView = () => {
         verified on the other side.
       </p>
       <Link
-        to="swap"
+        to="/swaps"
         className="mt-5 rounded-full px-6 py-3 dark:bg-white bg-special-black text-base font-medium leading-5 text-white dark:text-special-black"
       >
         Swap now
