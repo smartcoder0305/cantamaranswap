@@ -1,9 +1,9 @@
 import React from "react";
 
-import Faq from "./faq";
-import LandingView from "./landing-view";
-import SwapFlow from "./swap-flow";
-import SwapType from "./swap-type";
+import Faq from "./faq/";
+import LandingView from "./landing-view/";
+import SwapFlow from "./swap-flow/";
+import SwapType from "./swap-type/";
 
 const Home = () => {
   return (
