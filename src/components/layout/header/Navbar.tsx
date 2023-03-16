@@ -14,11 +14,13 @@ const Navbar = ({
   navbarVisible: boolean;
   setNavbarVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  console.log(navbarVisible);
+
   return (
     <div
       className={`sm:hidden overflow-hidden fixed z-10 top-0 right-0 ${
-        navbarVisible ? "w-full" : "w-0"
-      }  w-full h-[100vh] bg-white dark:bg-black transition-[width] duration-500`}
+        navbarVisible === true ? "w-full" : "w-0"
+      }  h-[100vh] bg-white dark:bg-black transition-[width] duration-500`}
     >
       <div className="w-full h-20 px-5 flex justify-end items-center">
         <button onClick={() => setNavbarVisible(false)}>
