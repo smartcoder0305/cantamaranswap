@@ -36,7 +36,7 @@ const CantamaranPreview = () => {
               Balance: 100 STX
             </p>
           </div>
-          <div className="mt-2.5 mb-1 rounded-lg w-full flex justify-between p-4 pl-3 border-[1px] border-[rgba(7,7,10,0.1)] bg-[rgba(7,7,10,0.04)] text-sm leading-[17px] font-normal">
+          <div className="mt-2.5 mb-1 rounded-lg w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between p-4 pl-3 border-[1px] border-[rgba(7,7,10,0.1)] bg-[rgba(7,7,10,0.04)] text-sm leading-[17px] font-normal">
             <div className="flex gap-1.5 items-center opacity-50">
               <p>Your BTC address</p>
               <InfoImg className="w-3 h-3 dark:stroke-white stroke-special-black" />
