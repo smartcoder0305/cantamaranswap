@@ -41,7 +41,7 @@ const CantamaranPreview = () => {
               <p>Your BTC address</p>
               <InfoImg className="w-3 h-3 dark:stroke-white stroke-special-black" />
             </div>
-            <p>1LdSd6KTEvJcyX2R8oyfgj5REuLzczMYC1</p>
+            <p className="text-xs">1LdSd6KTEvJcyX2R8oyfgj5REuLzczMYC1</p>
           </div>
         </div>
       </div>

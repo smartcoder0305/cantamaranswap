@@ -16,7 +16,7 @@ const Swap = () => {
   return (
     <div className="w-full flex justify-center">
       <div className="w-full max-w-[1440px] flex justify-center px-5 pb-8">
-        <div className="max-w-[590px] w-full mt-24 flex flex-col gap-5">
+        <div className="max-w-[590px] w-full mg-18 sm:mt-24 flex flex-col gap-5">
           <div className="w-full flex rounded-[18px] bg-white dark:bg-[rgba(11,11,15,0.9)] p-2 gap-2.5 text-center">
             <SwapButton
               name={SwapItems.CANTAMARAN_SWAP}
