@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CantamaranConfirm from "./CantamaranConfirm";
 import CantamaranPreview from "./CantamaranPreview";
 
 export const enum CantamaranSwapProgress {
@@ -17,7 +18,9 @@ const CanatamaranSwap = () => {
       {(() => {
         switch (swapProgress) {
           case CantamaranSwapProgress.PREVEIW_SWAP:
-            return <CantamaranPreview />;
+            return <CantamaranPreview setSwapProgress={setSwapProgress} />;
+          case CantamaranSwapProgress.SWAP_CONFIRM:
+            return <CantamaranConfirm setSwapProgress={setSwapProgress} />;
         }
       })()}
     </>
