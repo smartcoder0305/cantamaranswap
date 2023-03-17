@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import StxImg from "../../../assets/img/stx.png";
 import MiaImg from "../../../assets/img/mia.png";
@@ -6,12 +6,17 @@ import { ReactComponent as InfoImg } from "../../../assets/img/info.svg";
 import { ReactComponent as SettingImg } from "../../../assets/img/setting.svg";
 import { ReactComponent as ChervonDownImg } from "../../../assets/img/chervon-down.svg";
 import { SwapProgress } from "../Swap";
+import TokenList from "../../common/TokenList";
 
 const StxSwap = ({
   setSwapProgress,
 }: {
   setSwapProgress: React.Dispatch<React.SetStateAction<SwapProgress>>;
 }) => {
+  const [tokenListVisible, setTokenListVisible] = useState(false);
+
+  const onTokenSelectBtnClicked = () => setTokenListVisible(!tokenListVisible);
+
   return (
     <div className="w-full p-5 flex flex-col gap-3 bg-white dark:bg-[rgba(11,11,15,0.9)] rounded-[18px]">
       <div className="w-full flex justify-between items-center">
@@ -50,11 +55,17 @@ const StxSwap = ({
           </p>
           <div className="w-full flex justify-between">
             <p className="mt-2 text-[28px] leading-6 font-light">0.000035</p>
-            <div className="flex gap-2 items-center bg-[#25262B] rounded-lg px-3 py-2">
+            <button
+              className="flex gap-2 items-center bg-[#25262B] rounded-lg px-3 py-2"
+              onClick={onTokenSelectBtnClicked}
+            >
               <img className="h-7 w-7" src={MiaImg} alt="" />
               <p className="text-xl font-medium leading-6">MIA</p>
               <ChervonDownImg className="dark:fill-white fill-special-black flex-none" />
-            </div>
+            </button>
+            {tokenListVisible && (
+              <TokenList setTokenListVisible={setTokenListVisible} />
+            )}
           </div>
           <p className="mt-4 text-xs leading-[14px] font-light opacity-50">
             ≈$275,469
