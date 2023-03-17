@@ -8,14 +8,19 @@ import { ReactComponent as ChervonDownImg } from "../../../assets/img/chervon-do
 import { SwapProgress } from "../Swap";
 import TokenList from "../../common/TokenList";
 
-const StxSwap = ({
+const NftSwap = ({
   setSwapProgress,
 }: {
   setSwapProgress: React.Dispatch<React.SetStateAction<SwapProgress>>;
 }) => {
-  const [tokenListVisible, setTokenListVisible] = useState(false);
+  const [fromTokenListVisible, setFromTokenListVisible] = useState(false);
+  const [toTokenListVisible, setToTokenListVisible] = useState(false);
 
-  const onTokenSelectBtnClicked = () => setTokenListVisible(!tokenListVisible);
+  const onFromTokenSelectBtnClicked = () =>
+    setFromTokenListVisible(!fromTokenListVisible);
+
+  const onToTokenSelectBtnClicked = () =>
+    setFromTokenListVisible(!toTokenListVisible);
 
   return (
     <div className="w-full p-5 flex flex-col gap-3 bg-white dark:bg-[rgba(11,11,15,0.9)] rounded-[18px]">
@@ -36,18 +41,27 @@ const StxSwap = ({
               className="text-[28px] leading-6 font-light outline-none bg-transparent w-1/2"
               defaultValue={1}
             />
-            <div className="flex gap-2 items-center">
-              <img className="h-7 w-7" src={StxImg} alt="" />
-              <p className="text-xl font-medium leading-6">STX</p>
-            </div>
+            <button
+              className="flex gap-2 items-center bg-[rgba(7,7,10,0.07)] dark:bg-[#25262B] rounded-lg px-3 py-2"
+              onClick={onFromTokenSelectBtnClicked}
+            >
+              <img className="h-7 w-7" src={MiaImg} alt="" />
+              <p className="text-xl font-medium leading-6">MIA</p>
+              <ChervonDownImg className="dark:fill-white fill-special-black flex-none" />
+            </button>
+            {fromTokenListVisible && (
+              <TokenList setTokenListVisible={setFromTokenListVisible} />
+            )}
           </div>
-          <div className="w-full flex justify-between">
-            <p className="mt-4 text-xs leading-[14px] font-light opacity-50">
-              ≈$275,208
-            </p>
-            <p className="mt-4 text-xs leading-[14px] font-light opacity-50">
-              Balance: 100 STX
-            </p>
+          <p className="mt-4 text-xs leading-[14px] font-light opacity-50">
+            ≈$275,208
+          </p>
+          <div className="mt-2.5 mb-1 rounded-lg w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between p-4 pl-3 border-[1px] border-[rgba(7,7,10,0.1)] dark:border-[rgba(255,255,255,0.1)] bg-[rgba(7,7,10,0.04)] text-sm leading-[17px] font-normal">
+            <div className="flex gap-1.5 items-center opacity-50">
+              <p>Receiver BTCMonkey address</p>
+              <InfoImg className="w-3 h-3 dark:stroke-white stroke-special-black" />
+            </div>
+            <p className="text-xs">1LdSd6KTEvJcy...REuLzczMYC1</p>
           </div>
         </div>
       </div>
@@ -60,14 +74,14 @@ const StxSwap = ({
             <p className="mt-2 text-[28px] leading-6 font-light">0.000035</p>
             <button
               className="flex gap-2 items-center bg-[rgba(7,7,10,0.07)] dark:bg-[#25262B] rounded-lg px-3 py-2"
-              onClick={onTokenSelectBtnClicked}
+              onClick={onToTokenSelectBtnClicked}
             >
               <img className="h-7 w-7" src={MiaImg} alt="" />
               <p className="text-xl font-medium leading-6">MIA</p>
               <ChervonDownImg className="dark:fill-white fill-special-black flex-none" />
             </button>
-            {tokenListVisible && (
-              <TokenList setTokenListVisible={setTokenListVisible} />
+            {toTokenListVisible && (
+              <TokenList setTokenListVisible={setToTokenListVisible} />
             )}
           </div>
           <p className="mt-4 text-xs leading-[14px] font-light opacity-50">
@@ -76,7 +90,7 @@ const StxSwap = ({
           </p>
           <div className="mt-2.5 mb-1 rounded-lg w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between p-4 pl-3 border-[1px] border-[rgba(7,7,10,0.1)] dark:border-[rgba(255,255,255,0.1)] bg-[rgba(7,7,10,0.04)] text-sm leading-[17px] font-normal">
             <div className="flex gap-1.5 items-center opacity-50">
-              <p>Receiver STX address</p>
+              <p>Receiver Satoshi address</p>
               <InfoImg className="w-3 h-3 dark:stroke-white stroke-special-black" />
             </div>
             <p className="text-xs">1LdSd6KTEvJcy...REuLzczMYC1</p>
@@ -100,4 +114,4 @@ const StxSwap = ({
   );
 };
 
-export default StxSwap;
+export default NftSwap;

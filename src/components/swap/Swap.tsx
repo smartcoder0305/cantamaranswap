@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import CatamaranSwap from "./cantamaran-swap/CatamaranSwap";
+import CatamaranSwap from "./catamaran-swap/CatamaranSwap";
 import SwapButton from "./SwapButton";
 import SwapConfirm from "./SwapConfirm";
 import SwapComplete from "./SwapComplete";
 import StxSwap from "./stx-swap/StxSwap";
+import NftSwap from "./nft-swap/NftSwap";
 
 export const enum SwapItems {
   CANTAMARAN_SWAP = "Catamaran Swap",
@@ -54,6 +55,8 @@ const Swap = () => {
                     return <CatamaranSwap setSwapProgress={setSwapProgress} />;
                   case SwapItems.STX_SWAP:
                     return <StxSwap setSwapProgress={setSwapProgress} />;
+                  case SwapItems.NFT_SWAP:
+                    return <NftSwap setSwapProgress={setSwapProgress} />;
                 }
               })()}
             </>

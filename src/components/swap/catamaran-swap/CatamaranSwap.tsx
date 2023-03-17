@@ -28,7 +28,7 @@ const CatamaranSwap = ({
           </p>
           <div className="mt-2 w-full flex justify-between items-center">
             <input
-              className="text-[28px] leading-6 font-light bg-transparent outline-none"
+              className="text-[28px] leading-6 font-light bg-transparent outline-none w-1/2"
               defaultValue={1}
               type="number"
             />
@@ -50,7 +50,7 @@ const CatamaranSwap = ({
               <p>Your BTC address</p>
               <InfoImg className="w-3 h-3 dark:stroke-white stroke-special-black" />
             </div>
-            <p className="text-xs">1LdSd6KTEvJcyX2R8oyfgj5REuLzczMYC1</p>
+            <p className="text-xs">1LdSd6KTEvJ...uLzczMYC1</p>
           </div>
         </div>
       </div>

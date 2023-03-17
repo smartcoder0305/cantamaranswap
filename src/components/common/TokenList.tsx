@@ -26,7 +26,7 @@ const TokenList = ({
   }, [setTokenListVisible]);
 
   return (
-    <div className="w-full h-screen absolute top-0 left-0 z-20 flex items-center justify-center backdrop-blur-sm">
+    <div className="w-full h-screen fixed top-0 left-0 z-20 flex items-center justify-center backdrop-blur-sm">
       <div
         ref={wrapperRef}
         className="w-full max-w-[414px] bg-white dark:bg-[#14151A] flex flex-col gap-3 p-5 rounded-[18px] shadow-sm border-[1px] border-[rgba(7,7,10,0.1)]"
