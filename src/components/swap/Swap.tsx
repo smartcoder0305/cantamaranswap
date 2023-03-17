@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import CantamaranPreview from "./cantamaran-swap/CantamaranPreview";
+import CatamaranSwap from "./cantamaran-swap/CatamaranSwap";
 import SwapButton from "./SwapButton";
 import SwapConfirm from "./SwapConfirm";
 import SwapComplete from "./SwapComplete";
@@ -51,9 +51,7 @@ const Swap = () => {
               {(() => {
                 switch (selectedHeaderItem) {
                   case SwapItems.CANTAMARAN_SWAP:
-                    return (
-                      <CantamaranPreview setSwapProgress={setSwapProgress} />
-                    );
+                    return <CatamaranSwap setSwapProgress={setSwapProgress} />;
                   case SwapItems.STX_SWAP:
                     return <StxSwap setSwapProgress={setSwapProgress} />;
                 }

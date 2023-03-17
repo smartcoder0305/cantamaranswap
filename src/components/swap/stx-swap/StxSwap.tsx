@@ -32,7 +32,10 @@ const StxSwap = ({
             You send
           </p>
           <div className="mt-2 w-full flex justify-between items-center">
-            <p className="text-[28px] leading-6 font-light">1</p>
+            <input
+              className="text-[28px] leading-6 font-light outline-none bg-transparent"
+              defaultValue={1}
+            />
             <div className="flex gap-2 items-center">
               <img className="h-7 w-7" src={StxImg} alt="" />
               <p className="text-xl font-medium leading-6">STX</p>
@@ -56,7 +59,7 @@ const StxSwap = ({
           <div className="w-full flex justify-between">
             <p className="mt-2 text-[28px] leading-6 font-light">0.000035</p>
             <button
-              className="flex gap-2 items-center bg-[#25262B] rounded-lg px-3 py-2"
+              className="flex gap-2 items-center bg-[rgba(7,7,10,0.07)] dark:bg-[#25262B] rounded-lg px-3 py-2"
               onClick={onTokenSelectBtnClicked}
             >
               <img className="h-7 w-7" src={MiaImg} alt="" />

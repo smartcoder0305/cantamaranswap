@@ -7,7 +7,7 @@ import { ReactComponent as SettingImg } from "../../../assets/img/setting.svg";
 import { ReactComponent as ChervonDownImg } from "../../../assets/img/chervon-down.svg";
 import { SwapProgress } from "../Swap";
 
-const CantamaranPreview = ({
+const CatamaranSwap = ({
   setSwapProgress,
 }: {
   setSwapProgress: React.Dispatch<React.SetStateAction<SwapProgress>>;
@@ -27,7 +27,11 @@ const CantamaranPreview = ({
             You send
           </p>
           <div className="mt-2 w-full flex justify-between items-center">
-            <p className="text-[28px] leading-6 font-light">1</p>
+            <input
+              className="text-[28px] leading-6 font-light bg-transparent outline-none"
+              defaultValue={1}
+              type="number"
+            />
             <div className="flex gap-2 items-center">
               <img className="h-7 w-7" src={StxImg} alt="" />
               <p className="text-xl font-medium leading-6">STX</p>
@@ -66,9 +70,11 @@ const CantamaranPreview = ({
             ≈$275,469
             <span className="ml-1 text-[#559276]">(0.0965%)</span>
           </p>
-          <p className="mt-6 mb-1 text-sm leading-[17px] font-normal opacity-50 ">
-            + Add Receiver BTC address
-          </p>
+          <input
+            type="text"
+            className="w-full mt-6 mb-1 text-sm leading-[17px] font-normal outline-none bg-transparent"
+            placeholder="+ Add Receiver BTC address"
+          />
         </div>
       </div>
       <div className="w-full flex justify-between items-center px-10">
@@ -88,4 +94,4 @@ const CantamaranPreview = ({
   );
 };
 
-export default CantamaranPreview;
+export default CatamaranSwap;
