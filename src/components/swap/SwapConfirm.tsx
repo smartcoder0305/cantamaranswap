@@ -1,22 +1,21 @@
 import React from "react";
 
-import { CantamaranSwapProgress } from "./CantamaranSwap";
+import StxImg from "../../assets/img/stx.png";
+import BtcImg from "../../assets/img/btc.png";
+import { ReactComponent as DownImg } from "../../assets/img/down.svg";
+import { SwapProgress } from "./Swap";
 
-import StxImg from "../../../assets/img/stx.png";
-import BtcImg from "../../../assets/img/btc.png";
-import { ReactComponent as DownImg } from "../../../assets/img/down.svg";
-
-const CantamaranConfirm = ({
+const SwapConfirm = ({
   setSwapProgress,
 }: {
-  setSwapProgress: React.Dispatch<React.SetStateAction<CantamaranSwapProgress>>;
+  setSwapProgress: React.Dispatch<React.SetStateAction<SwapProgress>>;
 }) => {
   const onGoBackBtnClicked = () => {
-    setSwapProgress(CantamaranSwapProgress.PREVEIW_SWAP);
+    setSwapProgress(SwapProgress.PREVEIW_SWAP);
   };
 
   const onConfirmBtnClicked = () => {
-    setSwapProgress(CantamaranSwapProgress.SWAP_COMPLETED);
+    setSwapProgress(SwapProgress.SWAP_COMPLETED);
   };
 
   return (
@@ -40,11 +39,11 @@ const CantamaranConfirm = ({
           </div>
           <p className="text-[28px] leading-6">BTC</p>
         </div>
-        <div className="w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between items-center text-sm leading-[17px] opacity-50 font-normal">
+        <div className="w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between sm:items-center text-sm leading-[17px] opacity-50 font-normal">
           <p>Your BTC address</p>
           <p className="text-xs">1LdSd6KTEvJcyX2R8oyfgj5REuLzczMYC1</p>
         </div>
-        <div className="w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between items-center text-sm leading-[17px] opacity-50 font-normal">
+        <div className="w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between sm:items-center text-sm leading-[17px] opacity-50 font-normal">
           <p>Receiver BTC address</p>
           <p className="text-xs">biwSd6KTEvJcyX2R8oyfgj5REuLzczMYC1</p>
         </div>
@@ -83,4 +82,4 @@ const CantamaranConfirm = ({
   );
 };
 
-export default CantamaranConfirm;
+export default SwapConfirm;

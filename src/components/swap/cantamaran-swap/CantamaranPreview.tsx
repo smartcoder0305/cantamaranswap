@@ -5,12 +5,12 @@ import BtcImg from "../../../assets/img/btc.png";
 import { ReactComponent as InfoImg } from "../../../assets/img/info.svg";
 import { ReactComponent as SettingImg } from "../../../assets/img/setting.svg";
 import { ReactComponent as ChervonDownImg } from "../../../assets/img/chervon-down.svg";
-import { CantamaranSwapProgress } from "./CantamaranSwap";
+import { SwapProgress } from "../Swap";
 
 const CantamaranPreview = ({
   setSwapProgress,
 }: {
-  setSwapProgress: React.Dispatch<React.SetStateAction<CantamaranSwapProgress>>;
+  setSwapProgress: React.Dispatch<React.SetStateAction<SwapProgress>>;
 }) => {
   return (
     <div className="w-full p-5 flex flex-col gap-3 bg-white dark:bg-[rgba(11,11,15,0.9)] rounded-[18px]">
@@ -80,7 +80,7 @@ const CantamaranPreview = ({
       </div>
       <button
         className="mt-5 rounded-full w-full py-3 dark:bg-white bg-special-black text-base font-medium leading-5 text-white dark:text-special-black"
-        onClick={() => setSwapProgress(CantamaranSwapProgress.SWAP_CONFIRM)}
+        onClick={() => setSwapProgress(SwapProgress.SWAP_CONFIRM)}
       >
         Preview Swap
       </button>

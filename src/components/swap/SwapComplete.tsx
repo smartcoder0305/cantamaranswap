@@ -1,17 +1,16 @@
 import React from "react";
 
-import { CantamaranSwapProgress } from "./CantamaranSwap";
-
-import { ReactComponent as UpImg } from "../../../assets/img/up.svg";
+import { ReactComponent as UpImg } from "../../assets/img/up.svg";
 import { Link } from "react-router-dom";
+import { SwapProgress } from "./Swap";
 
-const CantamaranComplete = ({
+const SwapComplete = ({
   setSwapProgress,
 }: {
-  setSwapProgress: React.Dispatch<React.SetStateAction<CantamaranSwapProgress>>;
+  setSwapProgress: React.Dispatch<React.SetStateAction<SwapProgress>>;
 }) => {
   const onGoSwapsBtnClicked = () => {
-    setSwapProgress(CantamaranSwapProgress.PREVEIW_SWAP);
+    setSwapProgress(SwapProgress.PREVEIW_SWAP);
   };
 
   return (
@@ -22,10 +21,10 @@ const CantamaranComplete = ({
       <p className="w-full text-center text-[28px] leading-10">
         Transation Submitted
       </p>
-      <div className="text-sm w-full leading-[14px] p-5 border-[1px] border-[rgba(7,7,10,0.1)] dark:border-[rgba(255,255,255,0.1)] rounded-lg flex justify-between items-center">
+      <div className="text-sm w-full leading-[14px] p-5 border-[1px] border-[rgba(7,7,10,0.1)] dark:border-[rgba(255,255,255,0.1)] rounded-lg flex flex-col sm:flex-row justify-between items-center">
         <p className="opacity-50">Transaction ID</p>
-        <div className="flex gap-4 items-center">
-          <a href="/" target="_blank" className="underline">
+        <div className="flex gap-4 items-center flex-col sm:flex-row">
+          <a href="/" target="_blank" className="underline pt-2 sm:p-0">
             0xcf854186fe717fbb4ab6d...
           </a>
           <button className="rounded-full py-2 px-5 dark:bg-white bg-special-black text-base font-medium leading-5 text-white dark:text-special-black">
@@ -51,4 +50,4 @@ const CantamaranComplete = ({
   );
 };
 
-export default CantamaranComplete;
+export default SwapComplete;
