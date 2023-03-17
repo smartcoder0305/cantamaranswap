@@ -22,7 +22,7 @@ const CantamaranConfirm = ({
   return (
     <div className="w-full p-5 flex flex-col gap-3 bg-white dark:bg-[rgba(11,11,15,0.9)] rounded-[18px]">
       <p className="text-base leading-6 font-normal">Catamaran Swap</p>
-      <div className="p-5 flex flex-col gap-5 rounded-lg bg-[rgba(7,7,10,0.03)] dark:bg-[#14151A]">
+      <div className="p-5 flex flex-col gap-5 rounded-lg bg-[rgba(7,7,10,0.03)] dark:bg-[#14151A] border-[1px] border-[rgba(7,7,10,0.1)] dark:border-[rgba(255,255,255,0.1)]">
         <div className="w-full flex justify-between items-center">
           <div className="flex gap-2 items-center">
             <img className="h-7 w-7" src={StxImg} alt="" />
@@ -54,7 +54,7 @@ const CantamaranConfirm = ({
           blocks.
         </p>
       </div>
-      <div className="text-sm leading-[14px] flex flex-col gap-5 p-5 rounded-lg bg-[rgba(7,7,10,0.03)] dark:bg-[#14151A]">
+      <div className="text-sm leading-[14px] flex flex-col gap-5 p-5 rounded-lg bg-[rgba(7,7,10,0.03)] dark:bg-[#14151A] border-[1px] border-[rgba(7,7,10,0.1)] dark:border-[rgba(255,255,255,0.1)]">
         <div className="w-full flex justify-between items-center">
           <p className="opacity-50">Price</p>
           <p>0.000035 BTC/1 STX</p>
