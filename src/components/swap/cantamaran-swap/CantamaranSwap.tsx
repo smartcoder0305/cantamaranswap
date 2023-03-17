@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CantamaranComplete from "./CantamaranComplete";
 import CantamaranConfirm from "./CantamaranConfirm";
 import CantamaranPreview from "./CantamaranPreview";
 
@@ -21,6 +22,8 @@ const CanatamaranSwap = () => {
             return <CantamaranPreview setSwapProgress={setSwapProgress} />;
           case CantamaranSwapProgress.SWAP_CONFIRM:
             return <CantamaranConfirm setSwapProgress={setSwapProgress} />;
+          case CantamaranSwapProgress.SWAP_COMPLETED:
+            return <CantamaranComplete setSwapProgress={setSwapProgress} />;
         }
       })()}
     </>

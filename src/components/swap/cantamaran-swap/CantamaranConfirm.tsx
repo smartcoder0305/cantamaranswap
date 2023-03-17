@@ -16,7 +16,7 @@ const CantamaranConfirm = ({
   };
 
   const onConfirmBtnClicked = () => {
-    setSwapProgress(CantamaranSwapProgress.SWAP_CONFIRM);
+    setSwapProgress(CantamaranSwapProgress.SWAP_COMPLETED);
   };
 
   return (
