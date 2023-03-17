@@ -3,6 +3,7 @@ import CantamaranPreview from "./cantamaran-swap/CantamaranPreview";
 import SwapButton from "./SwapButton";
 import SwapConfirm from "./SwapConfirm";
 import SwapComplete from "./SwapComplete";
+import StxSwap from "./stx-swap/StxSwap";
 
 export const enum SwapItems {
   CANTAMARAN_SWAP = "Catamaran Swap",
@@ -53,8 +54,8 @@ const Swap = () => {
                     return (
                       <CantamaranPreview setSwapProgress={setSwapProgress} />
                     );
-                  default:
-                    break;
+                  case SwapItems.STX_SWAP:
+                    return <StxSwap setSwapProgress={setSwapProgress} />;
                 }
               })()}
             </>
