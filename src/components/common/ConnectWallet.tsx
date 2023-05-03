@@ -26,6 +26,7 @@ const ConnectWallet = () => {
 
   const closeModal = () => {
     setShowModal(false);
+    document.body.style.overflowY = "auto";
   };
 
   const authenticate = () => {
