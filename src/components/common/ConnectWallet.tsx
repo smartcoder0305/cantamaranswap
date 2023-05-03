@@ -1,5 +1,6 @@
 import React from "react";
 import { AppConfig, showConnect, UserSession } from "@stacks/connect";
+import Modal from "./Modal";
 
 const appConfig = new AppConfig(["store_write", "publish_data"]);
 
@@ -11,8 +12,26 @@ const ConnectWallet = () => {
     ? (userSession.loadUserData().profile.stxAddress.mainnet as string)
     : "";
 
+  const [showModal, setShowModal] = React.useState(false);
+
+  const logout = () => {
+    userSession.signUserOut("/");
+    window.location.reload();
+  };
+
+  const openModal = () => {
+    setShowModal(true);
+    document.body.style.overflowY = "hidden";
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   const authenticate = () => {
-    if (isAuthenticated === false)
+    if (isAuthenticated) {
+      openModal();
+    } else {
       showConnect({
         appDetails: {
           name: "Stacks React Starter",
@@ -24,18 +43,30 @@ const ConnectWallet = () => {
         },
         userSession,
       });
+    }
   };
 
   return (
-    <button
-      className="bg-[rgba(255,255,255,0.1)] px-6 py-3 rounded-full text-base font-light leading-6 border-special-black border-[1px] dark:border-none"
-      type="button"
-      onClick={authenticate}
-    >
-      {isAuthenticated
-        ? `${address.slice(0, 5)}...${address.slice(-3)}`
-        : "Connect Wallet"}
-    </button>
+    <>
+      <button
+        id="dropdownDefaultButton"
+        data-dropdown-toggle="dropdown"
+        className="bg-[rgba(255,255,255,0.1)] px-6 py-3 rounded-full text-base font-light leading-6 border-special-black border-[1px] dark:border-none"
+        type="button"
+        onClick={authenticate}
+      >
+        {isAuthenticated
+          ? `${address.slice(0, 5)}...${address.slice(-3)}`
+          : "Connect Wallet"}
+      </button>
+      <Modal
+        showModal={showModal}
+        handleConfirm={logout}
+        handleClose={closeModal}
+      >
+        <p className="mx-auto">Do you want to logout?</p>
+      </Modal>
+    </>
   );
 };
 
