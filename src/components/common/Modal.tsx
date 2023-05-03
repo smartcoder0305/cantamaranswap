@@ -2,7 +2,7 @@
 import React from "react";
 
 // prop types
-type ModalPropType = {
+type ModalPropsType = {
   title?: React.ReactNode;
   children?: React.ReactNode;
   showModal: boolean;
@@ -17,7 +17,7 @@ const Modal = ({
   showModal,
   handleConfirm,
   handleClose,
-}: ModalPropType) => {
+}: ModalPropsType) => {
   // return component
   return showModal ? (
     <>
