@@ -6,9 +6,10 @@ const appConfig = new AppConfig(["store_write", "publish_data"]);
 export const userSession = new UserSession({ appConfig });
 
 const ConnectWallet = () => {
-  const address = userSession.loadUserData().profile.stxAddress
-    .mainnet as string;
   const isAuthenticated = userSession.isUserSignedIn();
+  const address = isAuthenticated
+    ? (userSession.loadUserData().profile.stxAddress.mainnet as string)
+    : "";
 
   const authenticate = () => {
     if (isAuthenticated === false)
