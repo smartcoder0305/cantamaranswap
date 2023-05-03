@@ -60,7 +60,11 @@ const CatamaranSwap = ({
             You receive
           </p>
           <div className="w-full flex justify-between">
-            <p className="mt-2 text-[28px] leading-6 font-light">0.000035</p>
+            <input
+              type="number"
+              className="mt-2 text-[28px] bg-transparent outline-none leading-6 font-light"
+              defaultValue="0.000035"
+            />
             <div className="flex gap-2 items-center">
               <img className="h-7 w-7" src={BtcImg} alt="" />
               <p className="text-xl font-medium leading-6">BTC</p>
