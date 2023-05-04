@@ -92,7 +92,7 @@ const CatamaranSwap = ({
           <input
             type="text"
             className="w-full mt-6 mb-1 text-sm leading-[17px] font-normal outline-none bg-transparent"
-            placeholder="+ Add Receiver BTC address"
+            placeholder="+ Add Receiver STX address"
           />
         </div>
       </div>

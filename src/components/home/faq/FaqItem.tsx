@@ -36,7 +36,7 @@ const FaqItem = ({ title, children }: FaqItemPropsType) => {
       {children && (
         <div
           className={`flex items-center px-6 justify-between bg-transparent rounded-[18px] overflow-hidden transition-all ${
-            showAnswer ? "mt-4 py-4 h-auto opacity-1" : "h-0 opacity-0"
+            showAnswer ? "mt-4 py-4 h-24 opacity-1" : "h-0 opacity-0"
           }`}
         >
           <p>{children}</p>
