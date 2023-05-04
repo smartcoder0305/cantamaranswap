@@ -6,7 +6,7 @@ import ThemeSelector from "../../common/ThemeSelector";
 import Navbar from "./Navbar";
 
 import { ReactComponent as LogoImg } from "../../../assets/img/logo.svg";
-import { ReactComponent as ChervonDownImg } from "../../../assets/img/chervon-down.svg";
+import { ReactComponent as ChevronDownImg } from "../../../assets/img/chevron-down.svg";
 import { ReactComponent as NavbarImg } from "../../../assets/img/navbar.svg";
 
 const Header = () => {
@@ -43,7 +43,7 @@ const Header = () => {
               className="text-base font-normal leading-6 flex gap-3 items-center"
             >
               More{" "}
-              <ChervonDownImg className="dark:fill-white fill-special-black" />
+              <ChevronDownImg className="dark:fill-white fill-special-black" />
             </Link>
           </div>
           <div className="flex-1 justify-end items-center hidden sm:flex gap-3">

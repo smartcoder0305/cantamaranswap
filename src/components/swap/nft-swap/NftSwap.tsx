@@ -4,7 +4,7 @@ import StxImg from "../../../assets/img/stx.png";
 import MiaImg from "../../../assets/img/mia.png";
 import { ReactComponent as InfoImg } from "../../../assets/img/info.svg";
 import { ReactComponent as SettingImg } from "../../../assets/img/setting.svg";
-import { ReactComponent as ChervonDownImg } from "../../../assets/img/chervon-down.svg";
+import { ReactComponent as ChevronDownImg } from "../../../assets/img/chevron-down.svg";
 import { SwapProgress } from "../Swap";
 import TokenList from "../../common/TokenList";
 
@@ -47,7 +47,7 @@ const NftSwap = ({
             >
               <img className="h-7 w-7" src={MiaImg} alt="" />
               <p className="text-xl font-medium leading-6">MIA</p>
-              <ChervonDownImg className="dark:fill-white fill-special-black flex-none" />
+              <ChevronDownImg className="dark:fill-white fill-special-black flex-none" />
             </button>
             {fromTokenListVisible && (
               <TokenList setTokenListVisible={setFromTokenListVisible} />
@@ -78,7 +78,7 @@ const NftSwap = ({
             >
               <img className="h-7 w-7" src={MiaImg} alt="" />
               <p className="text-xl font-medium leading-6">MIA</p>
-              <ChervonDownImg className="dark:fill-white fill-special-black flex-none" />
+              <ChevronDownImg className="dark:fill-white fill-special-black flex-none" />
             </button>
             {toTokenListVisible && (
               <TokenList setTokenListVisible={setToTokenListVisible} />
@@ -102,7 +102,7 @@ const NftSwap = ({
           1 MIA = 0.0004354 STX
           <span className="opacity-50"> ($1.00043) </span>
         </p>
-        <ChervonDownImg className="dark:fill-white fill-special-black flex-none" />
+        <ChevronDownImg className="dark:fill-white fill-special-black flex-none" />
       </div>
       <button
         className="mt-5 rounded-full w-full py-3 dark:bg-white bg-special-black text-base font-medium leading-5 text-white dark:text-special-black"

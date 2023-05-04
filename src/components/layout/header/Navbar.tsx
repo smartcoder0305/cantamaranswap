@@ -5,7 +5,7 @@ import ConnectWallet from "../../common/ConnectWallet";
 import ThemeSelector from "../../common/ThemeSelector";
 
 import { ReactComponent as CloseImg } from "../../../assets/img/close.svg";
-import { ReactComponent as ChervonDownImg } from "../../../assets/img/chervon-down.svg";
+import { ReactComponent as ChevronDownImg } from "../../../assets/img/chevron-down.svg";
 
 const Navbar = ({
   navbarVisible,
@@ -47,7 +47,7 @@ const Navbar = ({
           className="text-base font-normal leading-6 flex gap-3 items-center"
           onClick={closeNavbar}
         >
-          More <ChervonDownImg className="dark:fill-white fill-special-black" />
+          More <ChevronDownImg className="dark:fill-white fill-special-black" />
         </Link>
         <div className="w-full justify-center items-center flex gap-3">
           <ThemeSelector />

@@ -1,6 +1,7 @@
 // imports
 import React, { useState } from "react";
-import { ReactComponent as ChervonDownImg } from "../../../assets/img/chervon-down.svg";
+import { ReactComponent as ChevronUpImg } from "../../../assets/img/chevron-up.svg";
+import { ReactComponent as ChevronDownImg } from "../../../assets/img/chevron-down.svg";
 
 // prop types
 type FaqItemPropsType = {
@@ -26,7 +27,11 @@ const FaqItem = ({ title, children }: FaqItemPropsType) => {
         onClick={handleClick}
       >
         <p className="text-base leading-6 font-medium">{title}</p>
-        <ChervonDownImg className="dark:fill-white fill-special-black flex-none" />
+        {showAnswer ? (
+          <ChevronUpImg className="dark:fill-white fill-special-black flex-none" />
+        ) : (
+          <ChevronDownImg className="dark:fill-white fill-special-black flex-none" />
+        )}
       </div>
       {children && (
         <div

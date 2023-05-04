@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
 import StxImg from "../../../assets/img/stx.png";
 import BtcImg from "../../../assets/img/btc.png";
 import { ReactComponent as InfoImg } from "../../../assets/img/info.svg";
 import { ReactComponent as SettingImg } from "../../../assets/img/setting.svg";
-import { ReactComponent as ChervonDownImg } from "../../../assets/img/chervon-down.svg";
+import { ReactComponent as ChevronDownImg } from "../../../assets/img/chevron-down.svg";
 import { SwapProgress } from "../Swap";
 
 const CatamaranSwap = ({
@@ -12,6 +12,17 @@ const CatamaranSwap = ({
 }: {
   setSwapProgress: React.Dispatch<React.SetStateAction<SwapProgress>>;
 }) => {
+  const [amounts, setAmounts] = useState({
+    sendAmount: 1,
+    receiveAmount: 0,
+  });
+  const onChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    const {
+      target: { value, name },
+    } = ev;
+    setAmounts({ ...amounts, [name]: value });
+  };
+  const { sendAmount, receiveAmount } = amounts;
   return (
     <div className="w-full p-5 flex flex-col gap-3 bg-white dark:bg-[rgba(11,11,15,0.9)] rounded-[18px]">
       <div className="w-full flex justify-between items-center">
@@ -29,8 +40,10 @@ const CatamaranSwap = ({
           <div className="mt-2 w-full flex justify-between items-center">
             <input
               className="text-[28px] leading-6 font-light bg-transparent outline-none w-1/2"
-              defaultValue={1}
               type="number"
+              name="sendAmount"
+              value={sendAmount}
+              onChange={onChange}
             />
             <div className="flex gap-2 items-center">
               <img className="h-7 w-7" src={StxImg} alt="" />
@@ -62,8 +75,10 @@ const CatamaranSwap = ({
           <div className="w-full flex justify-between">
             <input
               type="number"
+              name="receiveAmount"
+              value={receiveAmount}
+              onChange={onChange}
               className="mt-2 text-[28px] bg-transparent outline-none leading-6 font-light"
-              defaultValue="0.000035"
             />
             <div className="flex gap-2 items-center">
               <img className="h-7 w-7" src={BtcImg} alt="" />
@@ -86,7 +101,7 @@ const CatamaranSwap = ({
           1 BTC = 0.0004354 STX
           <span className="opacity-50"> ($1.00043) </span>
         </p>
-        <ChervonDownImg className="dark:fill-white fill-special-black flex-none" />
+        <ChevronDownImg className="dark:fill-white fill-special-black flex-none" />
       </div>
       <button
         className="mt-5 rounded-full w-full py-3 dark:bg-white bg-special-black text-base font-medium leading-5 text-white dark:text-special-black"
