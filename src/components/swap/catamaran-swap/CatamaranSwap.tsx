@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import StxImg from "../../../assets/img/stx.png";
 import BtcImg from "../../../assets/img/btc.png";
@@ -6,6 +6,7 @@ import { ReactComponent as InfoImg } from "../../../assets/img/info.svg";
 import { ReactComponent as SettingImg } from "../../../assets/img/setting.svg";
 import { ReactComponent as ChevronDownImg } from "../../../assets/img/chevron-down.svg";
 import { SwapProgress } from "../Swap";
+import { userSession } from "../../common/ConnectWallet";
 
 const CatamaranSwap = ({
   setSwapProgress,
@@ -16,12 +17,17 @@ const CatamaranSwap = ({
     sendAmount: 1,
     receiveAmount: 0,
   });
+  const isAuthenticated = userSession.isUserSignedIn();
+  const address = isAuthenticated
+    ? (userSession.loadUserData().profile.stxAddress.mainnet as string)
+    : "";
   const onChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { value, name },
     } = ev;
     setAmounts({ ...amounts, [name]: value });
   };
+  useEffect(() => {}, []);
   const { sendAmount, receiveAmount } = amounts;
   return (
     <div className="w-full p-5 flex flex-col gap-3 bg-white dark:bg-[rgba(11,11,15,0.9)] rounded-[18px]">
@@ -63,7 +69,9 @@ const CatamaranSwap = ({
               <p>Your BTC address</p>
               <InfoImg className="w-3 h-3 dark:stroke-white stroke-special-black" />
             </div>
-            <p className="text-xs">1LdSd6KTEvJ...uLzczMYC1</p>
+            <p className="text-xs">
+              {address.slice(0, 5)}...{address.slice(-3)}
+            </p>
           </div>
         </div>
       </div>
