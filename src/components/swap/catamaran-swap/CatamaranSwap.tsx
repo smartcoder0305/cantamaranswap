@@ -16,7 +16,7 @@ import { setSwapDetail } from "../../../app/slices/Swap/thunks";
 import { AppDispatch } from "../../../app/store";
 
 export interface AccountBalance {
-  balance: string;
+  balance: number;
   total_fees_sent: string;
   total_received: string;
   total_sent: string;
@@ -31,12 +31,18 @@ const CatamaranSwap = ({
     sendAmount: 1,
     receiveAmount: 0,
   });
+  const [error, setError] = useState({
+    sendAmount: "",
+    receiveAmount: "",
+  });
   const [accountBalance, setAccountBalance] = useState<AccountBalance>({
-    balance: "",
+    balance: 0,
     total_fees_sent: "",
     total_received: "",
     total_sent: "",
   });
+  const { sendAmount, receiveAmount } = amounts;
+  const { balance } = accountBalance;
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const isAuthenticated = userSession.isUserSignedIn();
@@ -60,9 +66,25 @@ const CatamaranSwap = ({
       const balanceInfo = await accounts.getAccountBalance({
         principal: userWalletData.profile.stxAddress.testnet,
       });
-      setAccountBalance(balanceInfo.stx as AccountBalance);
+      setAccountBalance({
+        ...balanceInfo.stx,
+        balance: Number(balanceInfo.stx.balance) / 10 ** 6,
+      } as AccountBalance);
     })();
   }, []);
+  useEffect(() => {
+    if (sendAmount > balance) {
+      setError({
+        ...error,
+        sendAmount: "You cannot send more than your balance.",
+      });
+    } else {
+      setError({
+        ...error,
+        sendAmount: "",
+      });
+    }
+  }, [sendAmount]);
   if (!isAuthenticated) {
     return null;
   }
@@ -80,8 +102,6 @@ const CatamaranSwap = ({
     dispatch(setSwapDetail({ amountInfo: amounts }));
     setSwapProgress(SwapProgress.SWAP_CONFIRM);
   };
-  const { sendAmount, receiveAmount } = amounts;
-  const { balance } = accountBalance;
   return (
     <div className="w-full p-5 flex flex-col gap-3 bg-white dark:bg-[rgba(11,11,15,0.9)] rounded-[18px]">
       <div className="w-full flex justify-between items-center">
@@ -97,13 +117,18 @@ const CatamaranSwap = ({
             You send
           </p>
           <div className="mt-2 w-full flex justify-between items-center">
-            <input
-              className="text-[28px] leading-6 font-light bg-transparent outline-none w-1/2"
-              type="number"
-              name="sendAmount"
-              value={sendAmount}
-              onChange={onChange}
-            />
+            <div className="flex flex-col">
+              <input
+                className={`text-[28px] leading-6 font-light bg-transparent outline-none w-1/2 ${
+                  error.sendAmount ? "outline-1 outline-red-500" : ""
+                }`}
+                type="number"
+                name="sendAmount"
+                value={sendAmount}
+                onChange={onChange}
+              />
+              <p className="text-xs mt-1 text-red-500">{error.sendAmount}</p>
+            </div>
             <div className="flex gap-2 items-center">
               <img className="h-7 w-7" src={StxImg} alt="" />
               <p className="text-xl font-medium leading-6">STX</p>
@@ -114,11 +139,7 @@ const CatamaranSwap = ({
               ≈$275,208
             </p>
             <p className="mt-4 text-xs leading-[14px] font-light opacity-50">
-              Balance:{" "}
-              {Number(balance)
-                ? `${balance?.slice(0, -6)}.${balance?.slice(-6)} `
-                : "0 "}
-              STX
+              {`Balance: ${balance.toFixed(6)} STX`}
             </p>
           </div>
           <div className="mt-2.5 mb-1 rounded-lg w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between p-4 pl-3 border-[1px] border-[rgba(7,7,10,0.1)] dark:border-[rgba(255,255,255,0.1)] bg-[rgba(7,7,10,0.04)] text-sm leading-[17px] font-normal">
