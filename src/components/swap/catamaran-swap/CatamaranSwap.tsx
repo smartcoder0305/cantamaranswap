@@ -11,6 +11,9 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AccountsApi, Configuration } from "@stacks/blockchain-api-client";
 import { fetch } from "cross-fetch";
+import { useDispatch } from "react-redux";
+import { setSwapDetail } from "../../../app/slices/Swap/thunks";
+import { AppDispatch } from "../../../app/store";
 
 export interface AccountBalance {
   balance: string;
@@ -34,6 +37,7 @@ const CatamaranSwap = ({
     total_received: "",
     total_sent: "",
   });
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const isAuthenticated = userSession.isUserSignedIn();
   useEffect(() => {
@@ -71,6 +75,10 @@ const CatamaranSwap = ({
       target: { value, name },
     } = ev;
     setAmounts({ ...amounts, [name]: value });
+  };
+  const onPreviewSwap = () => {
+    dispatch(setSwapDetail({ amountInfo: amounts }));
+    setSwapProgress(SwapProgress.SWAP_CONFIRM);
   };
   const { sendAmount, receiveAmount } = amounts;
   const { balance } = accountBalance;
@@ -162,7 +170,7 @@ const CatamaranSwap = ({
       </div>
       <button
         className="mt-5 rounded-full w-full py-3 dark:bg-white bg-special-black text-base font-medium leading-5 text-white dark:text-special-black"
-        onClick={() => setSwapProgress(SwapProgress.SWAP_CONFIRM)}
+        onClick={onPreviewSwap}
       >
         Preview Swap
       </button>

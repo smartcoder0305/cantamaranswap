@@ -4,12 +4,18 @@ import StxImg from "../../assets/img/stx.png";
 import BtcImg from "../../assets/img/btc.png";
 import { ReactComponent as DownImg } from "../../assets/img/down.svg";
 import { SwapProgress } from "./Swap";
+import { useAppSelector } from "../../app/hooks";
 
 const SwapConfirm = ({
   setSwapProgress,
 }: {
   setSwapProgress: React.Dispatch<React.SetStateAction<SwapProgress>>;
 }) => {
+  const swapInfo = useAppSelector((state) => state.swap);
+  const {
+    amountInfo: { sendAmount, receiveAmount },
+  } = swapInfo;
+
   const onGoBackBtnClicked = () => {
     setSwapProgress(SwapProgress.PREVEIW_SWAP);
   };
@@ -25,7 +31,7 @@ const SwapConfirm = ({
         <div className="w-full flex justify-between items-center">
           <div className="flex gap-2 items-center">
             <img className="h-7 w-7" src={StxImg} alt="" />
-            <p className="text-2xl font-medium leading-6">1</p>
+            <p className="text-2xl font-medium leading-6">{sendAmount}</p>
           </div>
           <p className="text-[28px] leading-6">STX</p>
         </div>
@@ -35,7 +41,7 @@ const SwapConfirm = ({
         <div className="w-full flex justify-between items-center">
           <div className="flex gap-2 items-center">
             <img className="h-7 w-7" src={BtcImg} alt="" />
-            <p className="text-2xl font-medium leading-6">0.000035</p>
+            <p className="text-2xl font-medium leading-6">{receiveAmount}</p>
           </div>
           <p className="text-[28px] leading-6">BTC</p>
         </div>
@@ -49,14 +55,16 @@ const SwapConfirm = ({
         </div>
         <div className="h-[1px] bg-[rgba(255,255,255,0.1)]" />
         <p className="text-sm leading-5 font-extralight">
-          You will recive 0.000035 BTC. Transaction can be cancelled after 100
-          blocks.
+          You will recive {receiveAmount} BTC. Transaction can be cancelled
+          after 100 blocks.
         </p>
       </div>
       <div className="text-sm leading-[14px] flex flex-col gap-5 p-5 rounded-lg bg-[rgba(7,7,10,0.03)] dark:bg-[#14151A] border-[1px] border-[rgba(7,7,10,0.1)] dark:border-[rgba(255,255,255,0.1)]">
         <div className="w-full flex justify-between items-center">
           <p className="opacity-50">Price</p>
-          <p>0.000035 BTC/1 STX</p>
+          <p>
+            {receiveAmount} BTC/{sendAmount} STX
+          </p>
         </div>
         <div className="w-full flex justify-between items-center">
           <p className="opacity-50">Network Fee</p>
