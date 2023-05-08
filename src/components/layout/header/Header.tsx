@@ -33,7 +33,8 @@ const Header = () => {
               Swaps
             </Link>
             <Link
-              to="/documentation"
+              target="_blank"
+              to="https://docs.catamaranswaps.org/"
               className="text-base font-normal leading-6"
             >
               Documentation

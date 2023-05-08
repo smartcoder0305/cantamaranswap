@@ -15,7 +15,6 @@ export const userSession = new UserSession({ appConfig });
 
 function App() {
   // set theme as system setting
-  const isAuthenticated = userSession.isUserSignedIn();
   useEffect(() => {
     if (
       localStorage.theme === "dark" ||
