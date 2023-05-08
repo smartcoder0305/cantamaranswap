@@ -84,7 +84,7 @@ const CatamaranSwap = ({
         sendAmount: "",
       });
     }
-  }, [sendAmount]);
+  }, [sendAmount, balance]);
   if (!isAuthenticated) {
     return null;
   }
@@ -99,6 +99,12 @@ const CatamaranSwap = ({
     setAmounts({ ...amounts, [name]: value });
   };
   const onPreviewSwap = () => {
+    if (Object.values(error).some((msg) => !!msg)) {
+      toast("Please fix the errors.", {
+        type: "error",
+      });
+      return;
+    }
     dispatch(setSwapDetail({ amountInfo: amounts }));
     setSwapProgress(SwapProgress.SWAP_CONFIRM);
   };
