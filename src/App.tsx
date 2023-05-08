@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { AppConfig, UserSession } from "@stacks/connect";
+import { ToastContainer } from "react-toastify";
 
 import Home from "./components/home/Home";
 import Header from "./components/layout/header/Header";
@@ -7,8 +9,13 @@ import Header from "./components/layout/header/Header";
 import "./App.css";
 import Swap from "./components/swap/Swap";
 
+const appConfig = new AppConfig(["store_write", "publish_data"]);
+
+export const userSession = new UserSession({ appConfig });
+
 function App() {
   // set theme as system setting
+  const isAuthenticated = userSession.isUserSignedIn();
   useEffect(() => {
     if (
       localStorage.theme === "dark" ||
@@ -31,6 +38,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/swaps" element={<Swap />} />
         </Routes>
+        <ToastContainer />
       </div>
     </Router>
   );

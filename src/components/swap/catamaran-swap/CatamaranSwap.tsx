@@ -6,7 +6,10 @@ import { ReactComponent as InfoImg } from "../../../assets/img/info.svg";
 import { ReactComponent as SettingImg } from "../../../assets/img/setting.svg";
 import { ReactComponent as ChevronDownImg } from "../../../assets/img/chevron-down.svg";
 import { SwapProgress } from "../Swap";
-import { userSession } from "../../common/ConnectWallet";
+import axios from "axios";
+import { userSession } from "../../../App";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CatamaranSwap = ({
   setSwapProgress,
@@ -17,7 +20,30 @@ const CatamaranSwap = ({
     sendAmount: 1,
     receiveAmount: 0,
   });
+  const [balance, setBalance] = useState<number>(0);
+  const navigate = useNavigate();
   const isAuthenticated = userSession.isUserSignedIn();
+  useEffect(() => {
+    if (!isAuthenticated) {
+      toast("Please connect your wallet", {
+        type: "warning",
+      });
+      navigate("/");
+      return;
+    }
+    axios
+      .get(
+        `${process.env.REACT_APP_STACKS_API_ENDPOINT}/${userWalletData.profile.stxAddress.mainnet}`
+      )
+      .then((res) => res.data)
+      .then(({ balance, nonce }) => {
+        setBalance(balance);
+      });
+  }, []);
+  if (!isAuthenticated) {
+    return null;
+  }
+  const userWalletData = userSession.loadUserData();
   const address = isAuthenticated
     ? (userSession.loadUserData().profile.stxAddress.mainnet as string)
     : "";
@@ -27,7 +53,6 @@ const CatamaranSwap = ({
     } = ev;
     setAmounts({ ...amounts, [name]: value });
   };
-  useEffect(() => {}, []);
   const { sendAmount, receiveAmount } = amounts;
   return (
     <div className="w-full p-5 flex flex-col gap-3 bg-white dark:bg-[rgba(11,11,15,0.9)] rounded-[18px]">
@@ -61,7 +86,7 @@ const CatamaranSwap = ({
               ≈$275,208
             </p>
             <p className="mt-4 text-xs leading-[14px] font-light opacity-50">
-              Balance: 100 STX
+              Balance: {balance} STX
             </p>
           </div>
           <div className="mt-2.5 mb-1 rounded-lg w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between p-4 pl-3 border-[1px] border-[rgba(7,7,10,0.1)] dark:border-[rgba(255,255,255,0.1)] bg-[rgba(7,7,10,0.04)] text-sm leading-[17px] font-normal">

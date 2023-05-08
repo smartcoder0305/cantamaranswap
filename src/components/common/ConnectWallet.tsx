@@ -1,18 +1,14 @@
 import React from "react";
-import { AppConfig, showConnect, UserSession } from "@stacks/connect";
 import Modal from "./Modal";
-
-const appConfig = new AppConfig(["store_write", "publish_data"]);
-
-export const userSession = new UserSession({ appConfig });
+import { showConnect } from "@stacks/connect";
+import { userSession } from "../../App";
 
 const ConnectWallet = () => {
+  const [showModal, setShowModal] = React.useState(false);
   const isAuthenticated = userSession.isUserSignedIn();
   const address = isAuthenticated
     ? (userSession.loadUserData().profile.stxAddress.mainnet as string)
     : "";
-
-  const [showModal, setShowModal] = React.useState(false);
 
   const logout = () => {
     userSession.signUserOut("/");
