@@ -6,10 +6,18 @@ import { ReactComponent as InfoImg } from "../../../assets/img/info.svg";
 import { ReactComponent as SettingImg } from "../../../assets/img/setting.svg";
 import { ReactComponent as ChevronDownImg } from "../../../assets/img/chevron-down.svg";
 import { SwapProgress } from "../Swap";
-import axios from "axios";
 import { userSession } from "../../../App";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { AccountsApi, Configuration } from "@stacks/blockchain-api-client";
+import { fetch } from "cross-fetch";
+
+export interface AccountBalance {
+  balance: string;
+  total_fees_sent: string;
+  total_received: string;
+  total_sent: string;
+}
 
 const CatamaranSwap = ({
   setSwapProgress,
@@ -20,7 +28,12 @@ const CatamaranSwap = ({
     sendAmount: 1,
     receiveAmount: 0,
   });
-  const [balance, setBalance] = useState<number>(0);
+  const [accountBalance, setAccountBalance] = useState<AccountBalance>({
+    balance: "",
+    total_fees_sent: "",
+    total_received: "",
+    total_sent: "",
+  });
   const navigate = useNavigate();
   const isAuthenticated = userSession.isUserSignedIn();
   useEffect(() => {
@@ -31,14 +44,20 @@ const CatamaranSwap = ({
       navigate("/");
       return;
     }
-    axios
-      .get(
-        `${process.env.REACT_APP_STACKS_API_ENDPOINT}/${userWalletData.profile.stxAddress.mainnet}`
-      )
-      .then((res) => res.data)
-      .then(({ balance, nonce }) => {
-        setBalance(balance);
+    (async () => {
+      const apiConfig = new Configuration({
+        fetchApi: fetch,
+        // for mainnet, replace `testnet` with `mainnet`
+        basePath: process.env.REACT_APP_STACKS_API_ENDPOINT,
       });
+
+      const accounts = new AccountsApi(apiConfig);
+
+      const balanceInfo = await accounts.getAccountBalance({
+        principal: userWalletData.profile.stxAddress.testnet,
+      });
+      setAccountBalance(balanceInfo.stx as AccountBalance);
+    })();
   }, []);
   if (!isAuthenticated) {
     return null;
@@ -54,6 +73,7 @@ const CatamaranSwap = ({
     setAmounts({ ...amounts, [name]: value });
   };
   const { sendAmount, receiveAmount } = amounts;
+  const { balance } = accountBalance;
   return (
     <div className="w-full p-5 flex flex-col gap-3 bg-white dark:bg-[rgba(11,11,15,0.9)] rounded-[18px]">
       <div className="w-full flex justify-between items-center">
@@ -86,7 +106,11 @@ const CatamaranSwap = ({
               ≈$275,208
             </p>
             <p className="mt-4 text-xs leading-[14px] font-light opacity-50">
-              Balance: {balance} STX
+              Balance:{" "}
+              {Number(balance)
+                ? `${balance?.slice(0, -6)}.${balance?.slice(-6)} `
+                : "0 "}
+              STX
             </p>
           </div>
           <div className="mt-2.5 mb-1 rounded-lg w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between p-4 pl-3 border-[1px] border-[rgba(7,7,10,0.1)] dark:border-[rgba(255,255,255,0.1)] bg-[rgba(7,7,10,0.04)] text-sm leading-[17px] font-normal">
