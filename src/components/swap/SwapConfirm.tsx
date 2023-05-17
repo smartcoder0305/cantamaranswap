@@ -50,7 +50,7 @@ const SwapConfirm = ({
           <p className="text-xs">1LdSd6KTEvJcyX2R8oyfgj5REuLzczMYC1</p>
         </div>
         <div className="w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between sm:items-center text-sm leading-[17px] opacity-50 font-normal">
-          <p>Receiver BTC address</p>
+          <p>Receiver STX address</p>
           <p className="text-xs">biwSd6KTEvJcyX2R8oyfgj5REuLzczMYC1</p>
         </div>
         <div className="h-[1px] bg-[rgba(255,255,255,0.1)]" />

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import StxImg from "../../../assets/img/stx.png";
 import BtcImg from "../../../assets/img/btc.png";
 import { ReactComponent as InfoImg } from "../../../assets/img/info.svg";
-import { ReactComponent as SettingImg } from "../../../assets/img/setting.svg";
 import { ReactComponent as ChevronDownImg } from "../../../assets/img/chevron-down.svg";
 import { SwapProgress } from "../Swap";
 import { userSession } from "../../../App";
@@ -12,9 +11,10 @@ import { toast } from "react-toastify";
 import { AccountsApi, Configuration } from "@stacks/blockchain-api-client";
 import { fetch } from "cross-fetch";
 import { useDispatch } from "react-redux";
-import { setSwapDetail } from "../../../app/slices/Swap/thunks";
+import { setSwapAmountDetail } from "../../../app/slices/Swap/thunks";
 import { AppDispatch } from "../../../app/store";
 import axios from "axios";
+import { useAppSelector } from "../../../app/hooks";
 
 export interface AccountBalance {
   balance: number;
@@ -45,6 +45,7 @@ const CatamaranSwap = ({
   const { sendAmount, receiveAmount } = amounts;
   const { balance } = accountBalance;
   const dispatch = useDispatch<AppDispatch>();
+  const swapInfo = useAppSelector((state) => state.swap);
   const navigate = useNavigate();
   const isAuthenticated = userSession.isUserSignedIn();
   useEffect(() => {
@@ -105,12 +106,16 @@ const CatamaranSwap = ({
       });
     }
   }, [sendAmount, balance]);
+
+  useEffect(() => {
+    setAmounts(swapInfo.amountInfo);
+  }, [swapInfo]);
   if (!isAuthenticated) {
     return null;
   }
   const userWalletData = userSession.loadUserData();
   const address = isAuthenticated
-    ? (userSession.loadUserData().profile.stxAddress.mainnet as string)
+    ? (userSession.loadUserData().profile.btcAddress.p2wpkh as string)
     : "";
   const onChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -125,7 +130,7 @@ const CatamaranSwap = ({
       });
       return;
     }
-    dispatch(setSwapDetail({ amountInfo: amounts }));
+    dispatch(setSwapAmountDetail(amounts));
     setSwapProgress(SwapProgress.SWAP_CONFIRM);
   };
   return (
