@@ -14,13 +14,14 @@ const SwapConfirm = ({
   const swapInfo = useAppSelector((state) => state.swap);
   const {
     amountInfo: { sendAmount, receiveAmount },
+    addressInfo: { userBTCAddress, receiverSTXAddress },
   } = swapInfo;
 
   const onGoBackBtnClicked = () => {
     setSwapProgress(SwapProgress.PREVEIW_SWAP);
   };
 
-  const onConfirmBtnClicked = () => {
+  const onConfirmBtnClicked = async () => {
     setSwapProgress(SwapProgress.SWAP_COMPLETED);
   };
 
@@ -47,11 +48,11 @@ const SwapConfirm = ({
         </div>
         <div className="w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between sm:items-center text-sm leading-[17px] opacity-50 font-normal">
           <p>Your BTC address</p>
-          <p className="text-xs">1LdSd6KTEvJcyX2R8oyfgj5REuLzczMYC1</p>
+          <p className="text-xs">{userBTCAddress}</p>
         </div>
         <div className="w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between sm:items-center text-sm leading-[17px] opacity-50 font-normal">
           <p>Receiver STX address</p>
-          <p className="text-xs">biwSd6KTEvJcyX2R8oyfgj5REuLzczMYC1</p>
+          <p className="text-xs">{receiverSTXAddress}</p>
         </div>
         <div className="h-[1px] bg-[rgba(255,255,255,0.1)]" />
         <p className="text-sm leading-5 font-extralight">

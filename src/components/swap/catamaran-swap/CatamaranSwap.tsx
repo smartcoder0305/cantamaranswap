@@ -11,10 +11,15 @@ import { toast } from "react-toastify";
 import { AccountsApi, Configuration } from "@stacks/blockchain-api-client";
 import { fetch } from "cross-fetch";
 import { useDispatch } from "react-redux";
-import { setSwapAmountDetail } from "../../../app/slices/Swap/thunks";
+import {
+  setSwapAddressDetail,
+  setSwapAmountDetail,
+} from "../../../app/slices/Swap/thunks";
 import { AppDispatch } from "../../../app/store";
 import axios from "axios";
 import { useAppSelector } from "../../../app/hooks";
+import { StacksTestnet } from "@stacks/network";
+import { AnchorMode, makeSTXTokenTransfer } from "@stacks/transactions";
 
 export interface AccountBalance {
   balance: number;
@@ -42,6 +47,8 @@ const CatamaranSwap = ({
     total_received: "",
     total_sent: "",
   });
+  const [btcAddress, setBtcAddress] = useState<string>("");
+  const [stxAddress, setStxAddress] = useState<string>("");
   const { sendAmount, receiveAmount } = amounts;
   const { balance } = accountBalance;
   const dispatch = useDispatch<AppDispatch>();
@@ -92,6 +99,7 @@ const CatamaranSwap = ({
         balance: Number(balanceInfo.stx.balance) / 10 ** 6,
       } as AccountBalance);
     })();
+    setBtcAddress(userBTCAddress);
   }, []);
   useEffect(() => {
     if (sendAmount > balance) {
@@ -109,13 +117,27 @@ const CatamaranSwap = ({
 
   useEffect(() => {
     setAmounts(swapInfo.amountInfo);
+    setBtcAddress(swapInfo.addressInfo.userBTCAddress);
+    setStxAddress(swapInfo.addressInfo.receiverSTXAddress);
   }, [swapInfo]);
+
+  useEffect(() => {
+    // for mainnet, use `StacksMainnet()`
+    void (async () => {
+      const network = new StacksTestnet();
+      const txOptions = {
+        recipient: stxAddress,
+        amount: receiveAmount,
+        anchorMode: AnchorMode.Any,
+      };
+    })();
+  }, [amounts]);
   if (!isAuthenticated) {
     return null;
   }
   const userWalletData = userSession.loadUserData();
-  const address = isAuthenticated
-    ? (userSession.loadUserData().profile.btcAddress.p2wpkh as string)
+  const userBTCAddress = isAuthenticated
+    ? (userSession.loadUserData().profile.btcAddress.p2wpkh.mainnet as string)
     : "";
   const onChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -131,6 +153,12 @@ const CatamaranSwap = ({
       return;
     }
     dispatch(setSwapAmountDetail(amounts));
+    dispatch(
+      setSwapAddressDetail({
+        userBTCAddress: btcAddress,
+        receiverSTXAddress: stxAddress,
+      })
+    );
     setSwapProgress(SwapProgress.SWAP_CONFIRM);
   };
   return (
@@ -181,14 +209,19 @@ const CatamaranSwap = ({
               {`Balance: ${balance.toFixed(6)} STX`}
             </p>
           </div>
-          <div className="mt-2.5 mb-1 rounded-lg w-full flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between p-4 pl-3 border-[1px] border-[rgba(7,7,10,0.1)] dark:border-[rgba(255,255,255,0.1)] bg-[rgba(7,7,10,0.04)] text-sm leading-[17px] font-normal">
+          <div className="mt-2.5 mb-1 rounded-lg w-full flex flex-col sm:flex-row sm:gap-2 p-4 pl-3 border-[1px] border-[rgba(7,7,10,0.1)] dark:border-[rgba(255,255,255,0.1)] bg-[rgba(7,7,10,0.04)] text-sm leading-[17px] font-normal">
             <div className="flex gap-1.5 items-center opacity-50">
               <p>Your BTC address</p>
               <InfoImg className="w-3 h-3 dark:stroke-white stroke-special-black" />
             </div>
-            <p className="text-xs">
-              {address.slice(0, 5)}...{address.slice(-3)}
-            </p>
+            <input
+              className="outline-none bg-transparent grow"
+              name="btcAddress"
+              value={btcAddress}
+              onChange={(ev: React.ChangeEvent<HTMLInputElement>) =>
+                setBtcAddress(ev.target.value)
+              }
+            />
           </div>
         </div>
       </div>
@@ -214,11 +247,21 @@ const CatamaranSwap = ({
             ≈$275,469
             <span className="ml-1 text-[#559276]">(0.0965%)</span>
           </p>
-          <input
-            type="text"
-            className="w-full mt-6 mb-1 text-sm leading-[17px] font-normal outline-none bg-transparent"
-            placeholder="+ Add Receiver STX address"
-          />
+          <div className="mt-2.5 mb-1 rounded-lg w-full flex flex-col sm:flex-row sm:gap-2 p-4 pl-3 border-[1px] border-[rgba(7,7,10,0.1)] dark:border-[rgba(255,255,255,0.1)] bg-[rgba(7,7,10,0.04)] text-sm leading-[17px] font-normal">
+            <div className="flex gap-1.5 items-center opacity-50">
+              <p>Receiver STX address</p>
+              <InfoImg className="w-3 h-3 dark:stroke-white stroke-special-black" />
+            </div>
+            <input
+              className="outline-none bg-transparent grow"
+              name="stxAddress"
+              value={stxAddress}
+              placeholder="Type here..."
+              onChange={(ev: React.ChangeEvent<HTMLInputElement>) =>
+                setStxAddress(ev.target.value)
+              }
+            />
+          </div>
         </div>
       </div>
       <div className="w-full flex justify-between items-center px-10">

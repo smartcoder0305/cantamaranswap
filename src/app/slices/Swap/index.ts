@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { setSwapAmountDetail } from "./thunks";
+import { setSwapAddressDetail, setSwapAmountDetail } from "./thunks";
 
 export interface SwapAmountDetail {
   sendAmount: number;
@@ -32,15 +32,25 @@ export const swapSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(setSwapAmountDetail.fulfilled, (state, action) => {
-      return {
-        ...state,
-        amountInfo: {
-          ...state.amountInfo,
-          ...action.payload,
-        },
-      };
-    });
+    builder
+      .addCase(setSwapAmountDetail.fulfilled, (state, action) => {
+        return {
+          ...state,
+          amountInfo: {
+            ...state.amountInfo,
+            ...action.payload,
+          },
+        };
+      })
+      .addCase(setSwapAddressDetail.fulfilled, (state, action) => {
+        return {
+          ...state,
+          addressInfo: {
+            ...state.addressInfo,
+            ...action.payload,
+          },
+        };
+      });
   },
 });
 

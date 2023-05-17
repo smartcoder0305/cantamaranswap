@@ -2,11 +2,11 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { SwapAddressDetail, SwapAmountDetail, SwapDetail } from ".";
 
 export const setSwapAmountDetail = createAsyncThunk(
-  "setSwapDetail",
+  "setSwapAmountDetail",
   async (swapAmountInfo: SwapAmountDetail) => swapAmountInfo
 );
 
 export const setSwapAddressDetail = createAsyncThunk(
-  "setSwapDetail",
+  "setSwapAddressDetail",
   async (swapAddressInfo: SwapAddressDetail) => swapAddressInfo
 );
