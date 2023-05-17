@@ -14,6 +14,7 @@ import { fetch } from "cross-fetch";
 import { useDispatch } from "react-redux";
 import { setSwapDetail } from "../../../app/slices/Swap/thunks";
 import { AppDispatch } from "../../../app/store";
+import axios from "axios";
 
 export interface AccountBalance {
   balance: number;
@@ -54,7 +55,26 @@ const CatamaranSwap = ({
       navigate("/");
       return;
     }
-    (async () => {
+    axios
+      .get(
+        `${process.env.REACT_APP_COINMARKETCAP_ENDPOINT}/v2/cryptocurrency/quotes/latest`,
+        {
+          params: {
+            symbol: "STX",
+          },
+          headers: {
+            "X-CMC_PRO_API_KEY": "da99cac8-e58c-446a-8047-115f740d3550",
+            "Access-Control-Allow-Origin": "*",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    void (async () => {
       const apiConfig = new Configuration({
         fetchApi: fetch,
         // for mainnet, replace `testnet` with `mainnet`
@@ -125,7 +145,7 @@ const CatamaranSwap = ({
           <div className="mt-2 w-full flex justify-between items-center">
             <div className="flex flex-col">
               <input
-                className={`text-[28px] leading-6 font-light bg-transparent outline-none w-1/2 ${
+                className={`w-full text-[28px] leading-6 font-light bg-transparent outline-none w-1/2 ${
                   error.sendAmount ? "outline-1 outline-red-500" : ""
                 }`}
                 type="number"
