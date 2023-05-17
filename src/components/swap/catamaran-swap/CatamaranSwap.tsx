@@ -135,7 +135,6 @@ const CatamaranSwap = ({
           <p className="text-base leading-6 font-normal">Catamaran Swap</p>
           <InfoImg className="dark:stroke-white stroke-special-black" />
         </div>
-        <SettingImg className="dark:stroke-white stroke-special-black" />
       </div>
       <div className="p-5 flex justify-between items-center rounded-lg bg-[rgba(7,7,10,0.03)] dark:bg-[#14151A] border-[1px] border-[rgba(7,7,10,0.1)] dark:border-[rgba(255,255,255,0.1)]">
         <div className="w-full">
