@@ -28,6 +28,17 @@ export interface AccountBalance {
   total_sent: string;
 }
 
+export const isInvalidNuber = (number: number) => {
+  const regex = /^(?:[1-9]\d*|0)?(?:\.\d+)?$/;
+  return (
+    !regex.test(number.toString()) ||
+    (number.toString().charAt(0) === "0" &&
+      number.toString().charAt(1) !== "." &&
+      number.toString().length >= 2) ||
+    number.toString().charAt(0) === "."
+  );
+};
+
 const CatamaranSwap = ({
   setSwapProgress,
 }: {
@@ -49,6 +60,10 @@ const CatamaranSwap = ({
   });
   const [btcAddress, setBtcAddress] = useState<string>("");
   const [stxAddress, setStxAddress] = useState<string>("");
+  const [usdCurrencies, setUSDCurrencies] = useState({
+    stx: 0,
+    btc: 0,
+  });
   const { sendAmount, receiveAmount } = amounts;
   const { balance } = accountBalance;
   const dispatch = useDispatch<AppDispatch>();
@@ -65,10 +80,11 @@ const CatamaranSwap = ({
     }
     axios
       .get(
-        `${process.env.REACT_APP_COINMARKETCAP_ENDPOINT}/v2/cryptocurrency/quotes/latest`,
+        `https://cors-anywhere.herokuapp.com/${process.env.REACT_APP_COINMARKETCAP_ENDPOINT}/v2/cryptocurrency/quotes/latest`,
         {
           params: {
-            symbol: "STX",
+            id: "1,4847",
+            // id: `${process.env.REACT_APP_COINMARKETCAP_BITCOIN_ID},${process.env.REACT_APP_COINMARKETCAP_STACKS_ID}`,
           },
           headers: {
             "X-CMC_PRO_API_KEY": "da99cac8-e58c-446a-8047-115f740d3550",
@@ -77,10 +93,16 @@ const CatamaranSwap = ({
         }
       )
       .then((res) => {
-        console.log(res);
+        setUSDCurrencies({
+          ...usdCurrencies,
+          btc: res.data.data["1"].quote.USD.price,
+          stx: res.data.data["4847"].quote.USD.price,
+        });
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(
+          `Issue occured while fetching current STX price, please refresh again.\n${err.response.data}`
+        );
       });
     void (async () => {
       const apiConfig = new Configuration({
@@ -101,13 +123,19 @@ const CatamaranSwap = ({
     })();
     setBtcAddress(userBTCAddress);
   }, []);
+
   useEffect(() => {
-    if (sendAmount > balance) {
+    if (isInvalidNuber(sendAmount)) {
+      setError({
+        ...error,
+        sendAmount: "Invalid number",
+      });
+    } else if (sendAmount > balance) {
       setError({
         ...error,
         sendAmount: "You cannot send more than your balance.",
       });
-    } else {
+    } else if (error.sendAmount) {
       setError({
         ...error,
         sendAmount: "",
@@ -116,9 +144,20 @@ const CatamaranSwap = ({
   }, [sendAmount, balance]);
 
   useEffect(() => {
-    setAmounts(swapInfo.amountInfo);
-    setBtcAddress(swapInfo.addressInfo.userBTCAddress);
-    setStxAddress(swapInfo.addressInfo.receiverSTXAddress);
+    if (isInvalidNuber(receiveAmount)) {
+      setError({
+        ...error,
+        receiveAmount: "Invalid number",
+      });
+    }
+  }, [receiveAmount]);
+
+  useEffect(() => {
+    if (swapInfo && isAuthenticated) {
+      setAmounts(swapInfo.amountInfo);
+      setBtcAddress(swapInfo.addressInfo.userBTCAddress);
+      setStxAddress(swapInfo.addressInfo.receiverSTXAddress);
+    }
   }, [swapInfo]);
 
   useEffect(() => {
@@ -203,7 +242,7 @@ const CatamaranSwap = ({
           </div>
           <div className="w-full flex justify-between">
             <p className="mt-4 text-xs leading-[14px] font-light opacity-50">
-              ≈$275,208
+              ≈${sendAmount * usdCurrencies.stx}
             </p>
             <p className="mt-4 text-xs leading-[14px] font-light opacity-50">
               {`Balance: ${balance.toFixed(6)} STX`}
@@ -215,13 +254,14 @@ const CatamaranSwap = ({
               <InfoImg className="w-3 h-3 dark:stroke-white stroke-special-black" />
             </div>
             <input
-              className="outline-none bg-transparent grow"
+              className="w-full outline-none bg-transparent grow"
               name="btcAddress"
               value={btcAddress}
               onChange={(ev: React.ChangeEvent<HTMLInputElement>) =>
                 setBtcAddress(ev.target.value)
               }
             />
+            <p className="text-xs mt-1 text-red-500">{error.sendAmount}</p>
           </div>
         </div>
       </div>
@@ -244,7 +284,7 @@ const CatamaranSwap = ({
             </div>
           </div>
           <p className="mt-4 text-xs leading-[14px] font-light opacity-50">
-            ≈$275,469
+            ≈${receiveAmount * usdCurrencies.btc}
             <span className="ml-1 text-[#559276]">(0.0965%)</span>
           </p>
           <div className="mt-2.5 mb-1 rounded-lg w-full flex flex-col sm:flex-row sm:gap-2 p-4 pl-3 border-[1px] border-[rgba(7,7,10,0.1)] dark:border-[rgba(255,255,255,0.1)] bg-[rgba(7,7,10,0.04)] text-sm leading-[17px] font-normal">
